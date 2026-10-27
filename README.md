@@ -1,3 +1,9 @@
+> **DAIOps copy.** This is a copy of [imxv/Pretty-mermaid-skills](https://github.com/imxv/Pretty-mermaid-skills) at `e234ab7`,
+> MIT License, Copyright (c) 2026 Beautiful-Mermaid Contributors ([LICENSE](LICENSE), unchanged). The scripts load their two
+> dependencies from a folder DAIOps installs ahead of time instead of running `npm install` on first use, so diagrams render
+> in an offline DAIOps employee workspace. See [NOTICE](NOTICE) and [CHANGES.md](CHANGES.md). For the skill itself, use the
+> original repository.
+
 <div align="center">
 
 # Pretty Mermaid

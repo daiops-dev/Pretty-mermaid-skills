@@ -1,4 +1,4 @@
-import { Resvg } from '@resvg/resvg-js';
+import { loadResvg } from './deps.mjs';
 
 export const DEFAULT_PNG_WIDTH = 800;
 export const MIN_PNG_WIDTH = 100;
@@ -68,6 +68,7 @@ export function prepareSvgForPng(svg) {
 export function renderSvgForPng(svg, width = DEFAULT_PNG_WIDTH) {
   const validWidth = parsePngWidth(width);
   const prepared = prepareSvgForPng(svg);
+  const { Resvg } = loadResvg();
   const renderer = new Resvg(prepared.svg, {
     fitTo: { mode: 'width', value: validWidth },
     ...(prepared.background && { background: prepared.background }),

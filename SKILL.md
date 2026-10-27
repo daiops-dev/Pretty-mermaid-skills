@@ -183,7 +183,8 @@ Run both `npm test` and `npm run validate` when changing this skill, its scripts
 
 ## Troubleshooting
 
-- Missing dependency: run `npm install` in `<skill-root>`; the CLI also attempts a first-run install.
+- Missing dependency: the scripts load `beautiful-mermaid` and `@resvg/resvg-js` from `PRETTY_MERMAID_MODULES`, `<skill-root>/node_modules`, or `/opt/pretty-mermaid/node_modules`, in that order. They do not install anything, because the workspace may be offline. Report the error instead of installing packages.
+- Korean, Chinese or Japanese labels: PNG output uses the installed Noto Sans CJK font. Keep labels short so boxes stay readable.
 - Unknown theme: run `node scripts/themes.mjs` and use an exact listed name.
 - Parse error: consult `references/DIAGRAM_TYPES.md`, reduce to the failing statement, then restore the diagram incrementally.
 - Crowded SVG: increase `--node-spacing`, `--layer-spacing`, or `--component-spacing`.

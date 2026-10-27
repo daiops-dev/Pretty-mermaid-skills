@@ -1,0 +1,23 @@
+# DAIOps install manifest. DAIOps runs these steps, in order, in the workspace of every
+# employee hired from this talent. A step whose `check` already passes is skipped.
+# Versions must be pinned (DAIOps rejects @latest and unpinned global installs).
+#
+# The renderer needs two npm packages (about 16 MB). They go into /opt/pretty-mermaid so that
+# rendering works with no internet; scripts/deps.mjs looks there. The CJK font is for Korean
+# labels in PNG output (the workspace image has no CJK font).
+schema: 1
+upstream:
+  repo: imxv/Pretty-mermaid-skills
+  ref: e234ab73c2992f03c36db04fd55ebb90abca9c45
+install:
+  - id: fonts
+    run: apt-get update && apt-get install -y --no-install-recommends fonts-noto-cjk
+    check: fc-list :lang=ko | grep -q .
+  - id: renderer
+    run: >-
+      mkdir -p /opt/pretty-mermaid &&
+      npm install --prefix /opt/pretty-mermaid --no-fund --no-audit --ignore-scripts
+      beautiful-mermaid@1.1.3 @resvg/resvg-js@2.6.2
+    check: >-
+      node -e 'const p=n=>require("/opt/pretty-mermaid/node_modules/"+n+"/package.json").version;
+      process.exit(p("beautiful-mermaid")==="1.1.3"&&p("@resvg/resvg-js")==="2.6.2"?0:1)'
