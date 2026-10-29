@@ -168,6 +168,13 @@ Run `node scripts/render.mjs --help` or `node scripts/batch.mjs --help` for the 
 - Avoid communicating meaning through color alone.
 - Use a light theme for print and confirm contrast against the final background.
 - For unfamiliar syntax, start from `assets/example_diagrams/` and consult the diagram reference.
+- Do not put emoji in labels. The PNG font has no emoji glyphs, so they render as empty boxes.
+- Loops back to an earlier step (resubmit, retry): keep the main flow top to bottom with `flowchart TB`
+  and draw the return edge as a dotted labelled edge, for example `B -.->|재신청| A`. If the layout
+  still tangles, add an intermediate node for the decision instead of switching to another drawing tool.
+  Stay with this renderer; do not redraw the diagram with Python or other libraries.
+- When you describe the result to the user, use plain text and short lists. Do not decorate it with
+  emoji, colored circle symbols or circled numbers.
 
 ## Validation
 
